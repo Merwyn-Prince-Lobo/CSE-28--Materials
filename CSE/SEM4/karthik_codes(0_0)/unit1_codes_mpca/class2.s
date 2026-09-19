@@ -1,0 +1,15 @@
+.TEXT
+LDR R3, =X
+MOV R1, #0xCF
+
+
+AND R0, R1, #0xF0
+MOV R0, R0, LSR #4
+ORR R0, R0, #0x37
+STR R0, [R3]
+AND R2, R1, #0x0F
+ORR R2, R2, #0x37
+ADD R3, R3, #4
+STR R2, [R3]
+.DATA
+X: .WORD 0,0

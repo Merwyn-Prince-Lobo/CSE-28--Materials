@@ -1,0 +1,303 @@
+1) 
+In Scrum, what is a "Sprint"?
+A race between developers to finish code fastest
+A fixed-length timebox (e.g., 2-4 weeks) during which a usable, potentially releasable product increment is created
+A type of performance testing
+The final phase before project deployment
+2) 
+What is the primary purpose of a Requirement Traceability Matrix (RTM)?
+To trace the origin of a bug in the source code
+To ensure every baseline requirement is linked to a test case and delivered
+To track the daily attendance of the development team
+To measure the cyclomatic complexity of the software
+3) 
+Which of the following best defines "Software Engineering"?
+The process of writing code in C++
+The systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software
+The art of designing user interfaces
+The hardware assembly process
+4) 
+Which testing type validates that the software meets the business needs and is ready for deployment?
+Unit Testing
+Integration Testing
+User Acceptance Testing (UAT)
+Static Code Analysis
+5) 
+What role does a "Product Owner" play in Scrum?
+Writes the source code
+Manages the servers and infrastructure
+Maximizes the value of the product and manages the Product Backlog
+Facilitates the daily stand-up meeting and removes impediments
+6) 
+The Crowdstrike incident highlights the critical need for which SDLC practice?
+Faster coding sprints
+Phased rollouts and rigorous validation of automated updates
+Using older, more stable programming languages
+Eliminating all third-party software
+7) 
+What is the main output of the Requirements Engineering process?
+A working prototype
+A complete Test Plan
+A Software Requirement Specification (SRS) document
+The final deployed application
+8) 
+During a Security Development Life Cycle (SecDLC), threat modeling is ideally performed during which phase?
+Requirements and Design
+Post-release maintenance
+After the first penetration test fails
+During final user acceptance testing
+9) 
+Which testing level is performed by the end-users in their own environment?
+Alpha Testing
+Beta Testing
+System Testing
+Integration Testing
+10) 
+Which of the following SDLC models explicitly incorporates risk analysis at every iteration?
+Waterfall
+Spiral Model
+V-Model
+Incremental Model
+11) 
+What is Test Planning?
+Executing test cases and logging defects
+Defining the objectives, resources, schedule, and scope of testing activities
+Writing the actual test scripts in a programming language
+Fixing the bugs identified during testing
+12) 
+A system architecture requires encrypting data at rest and in transit. This is driven by a:
+Functional Requirement
+Security Requirement
+Performance Requirement
+Usability Requirement
+13) 
+What is a "User Scenario" in requirements engineering?
+A line of code that simulates user input
+A narrative description of how a user interacts with the system to achieve a specific goal
+A mathematical proof of system correctness
+A physical model of the user interface
+14) 
+Which phase of the SDLC involves converting the SRS into a logical structure and architecture?
+Analysis
+Design
+Implementation
+Maintenance
+15) 
+What is Test Planning?
+Executing test cases and logging defects
+Defining the objectives, resources, schedule, and scope of testing activities
+Writing the actual test scripts in a programming language
+Fixing the bugs identified during testing
+16) 
+What does the <> relationship in a use case diagram signify?
+The base use case explicitly incorporates the behavior of another use case
+The base use case might optionally use another use case
+The actor is included in the system boundary
+The use case is inherited from another use case
+17) 
+Why is Requirement Change Management necessary?
+Because developers get bored working on the same requirements
+To systematically evaluate, approve, and track changes to requirements to prevent uncontrolled scope creep
+To automatically reject any new requests from the client
+To rewrite the SRS completely every month
+18) 
+Which of the following best describes the Scrum framework in Agile?
+A strict sequential model with heavy documentation
+A time-boxed, iterative approach focusing on delivering increments of value
+A purely theoretical model for managing database schemas
+A testing methodology strictly for security validation
+19) 
+What is a major advantage of the Agile methodology over Waterfall?
+It requires less communication
+It is highly adaptable to changing requirements throughout the project
+It produces perfect documentation
+It guarantees a defect-free product
+20) 
+Which of the following is a fundamental disadvantage of the traditional Waterfall SDLC model?
+It requires excessive documentation during the coding phase
+It cannot accommodate changing requirements once the design phase is completed
+It is too flexible, leading to scope creep
+It mandates daily stand-up meetings which consume time
+21) 
+In Agile Methodology, what is the purpose of a "Sprint Retrospective"?
+To demonstrate the working software to the client
+To plan the next sprint
+To reflect on the past sprint and identify process improvements
+To document all the code written during the sprint
+22) 
+The concept of "Shift-Left" in a Security Development Life Cycle means:
+Moving security testing to the very end of the SDLC
+Integrating security practices earlier in the SDLC (e.g., during design and coding)
+Outsourcing security to a third party
+Ignoring security until a breach occurs
+23) 
+A Requirement Traceability Matrix (RTM) usually maps requirements to:
+Developer salaries
+Hardware specifications
+Test Cases
+Marketing strategies
+24) 
+What is the primary focus of a Security Validation Plan?
+Checking if the UI matches the design mockups
+Ensuring that all identified security requirements have been implemented and verifying the system's resilience against threats
+Validating that the project was completed under budget
+Ensuring the code compiles without warnings
+25) 
+In the context of Security Requirements, what does "Confidentiality" refer to?
+Ensuring the system is always available
+Ensuring data is not altered by unauthorized users
+Ensuring data is only accessible to authorized individuals
+Ensuring the identity of the user is verified
+26) 
+Which Agile artifact contains the prioritized list of everything that is known to be needed in the product?
+Sprint Backlog
+Product Backlog
+Requirement Traceability Matrix
+Gantt Chart
+27) 
+Why is Requirement Change Management critical in large software projects?
+To prevent any changes from ever occurring
+To ensure that changes are analyzed for impact on cost, schedule, and quality before approval
+To give the project manager something to do
+To automatically update the source code
+28) 
+Which of the following is a disadvantage of Agile methodologies?
+Inability to adapt to changing requirements
+Can lead to scope creep and lack of formal documentation if not managed properly
+Takes too long to deliver the first working software increment
+Does not involve the customer during development
+29) 
+In Software Requirement Specification (SRS), what does the characteristic of being "Verifiable" mean?
+The requirement is written in plain English
+There exists a finite, cost-effective process to check if the software meets the requirement
+The requirement has been approved by the CEO
+The requirement contains no technical jargon
+30) 
+Which of the following is considered a functional requirement for an e-commerce application?
+The system must load within 2 seconds
+The system must allow a user to add items to a shopping cart
+The system must be highly available (99.99% uptime)
+The system must use a PostgreSQL database
+31) 
+Which of the following best describes "Elicitation" in Requirements Engineering?
+Writing the final code based on a document
+The process of discovering, capturing, and gathering requirements from stakeholders
+Testing the gathered requirements
+Creating UML diagrams
+32) 
+Which SDLC model is most suitable for a project with highly volatile and unclear initial requirements?
+Waterfall
+V-Model
+Agile
+Linear Sequential
+33) 
+A Persona description should typically include:
+The exact code modules they will use
+Demographics, goals, pain points, and technical proficiency
+The server architecture needed to support them
+The UML class diagrams
+34) 
+A Security Validation Plan must inherently include:
+Only automated functional tests
+Penetration testing, vulnerability scanning, and compliance checks
+Only a review of the source code syntax
+Hardware benchmark scores
+35) 
+Which requirements gathering technique is best suited when stakeholders are geographically dispersed?
+Ethnography
+Questionnaires/Surveys
+Whiteboard brainstorming sessions
+In-person role-playing
+36) 
+Which of the following is an example of a "Domain Requirement"?
+The system must be painted blue
+A banking application must comply with ISO 8583 standards for financial transaction messaging
+The user must log in with a password
+The system must load in 1 second
+37) 
+"Users must be authenticated using multi-factor authentication (MFA) before accessing the dashboard." This is an example of a:
+Non-functional Requirement (Usability)
+Functional Requirement / Security Requirement
+Deployment Requirement
+Hardware Requirement
+38) 
+Which SDLC model emphasizes verification and validation at each corresponding stage of development?
+Spiral Model
+Agile
+V-Model
+RAD Model
+39) 
+In Requirements Elicitation, what is the primary benefit of developing 'Personas'?
+To create a database of all user passwords
+To build empathetic, realistic models of target users to guide design decisions
+To assign blame when a feature is not used
+To replace actual stakeholder interviews completely
+40) 
+What does Requirement Validation ensure?
+That the developers wrote the code correctly
+That the specified requirements accurately reflect what the stakeholders actually want and need
+That the system runs fast enough
+That the requirements are written in UML
+41) 
+"The system must process a minimum of 10,000 transactions per second without crashing." This is an example of a:
+Functional Requirement
+Security Requirement
+Non-functional Requirement (Performance)
+Business Rule
+42) 
+In the context of the Crowdstrike case study (a major system outage), which phase of the SDLC was most critically bypassed or failed, leading to the global IT collapse?
+Requirements Elicitation
+Safe Deployment and Update Validation
+Architectural Design
+Database Schema Modeling
+43) 
+In a UML Use Case Diagram, what does the relationship <> indicate?
+One use case is a mandatory part of another
+One use case represents an optional or exceptional behavior of another
+The actor is physically external to the system
+The system is connecting to an external database
+44) 
+What is the primary motivation for treating Software Engineering as a formalized engineering discipline rather than an art?
+To increase the lines of code produced per developer
+To manage the complexity and ensure reliability in large-scale software systems
+To eliminate the need for manual testing
+To enforce the use of Object-Oriented Programming exclusively
+45) 
+In Requirements Analysis, resolving conflicts between different stakeholders is known as:
+Requirement Elicitation
+Requirement Negotiation
+Requirement Specification
+Requirement Validation
+46) 
+Which of the following is NOT a recognized technique for Requirements Discovery?
+Brainstorming
+Ethnographic Observation
+Code Refactoring
+Prototyping
+47) 
+In UML Use Case diagrams, an "Actor" can be:
+Only a human user
+A human user, an external system, or a timer
+An internal module of the system
+A database table
+48) 
+Which testing type focuses on ensuring that new code changes do not break existing functionality?
+Smoke Testing
+Regression Testing
+Performance Testing
+Security Testing
+49) 
+Which Agile principle emphasizes self-organizing teams?
+Individuals and interactions over processes and tools
+Comprehensive documentation over working software
+Contract negotiation over customer collaboration
+Following a plan over responding to change
+50) 
+Which document serves as the formal agreement between the developers and clients regarding what will be built?
+Software Requirement Specification (SRS)
+Test Plan
+Source Code Repository
+UML Class Diagram
+
+
+

@@ -1,0 +1,57 @@
+
+echo "hello world!"
+if [-f notes.txt ]
+then 
+ echo "file is existing"
+else 
+  echo"file doesn't exist"
+fi
+888888888888888888888888888888888888888888888 to open file:- vi filename.sh    888 to come out of  press qw at once 
+for i in 1 2 3 4 5
+do
+  echo" value of i =$i"
+
+to go to bash 
+#chmod +x filename.sh
+#bash filename.sh
+88888888888888888888888888888888888888888888888888
+echo "hello world"
+for i in *
+do
+echo"file in current directory =$file"
+done
+8888888888888888888888888888888888888888888888888888888
+for i in {1..5}
+do
+  for j in {1..3}
+     do 
+     echo "value of i=$i and value of j=$j"
+     done
+done
+
+
+88888888888888888888888888888888888888888888888888
+#!/bin/bash
+for i in {1..5}
+do
+  if[$i -eq 3]
+  then 
+continue
+  fi
+for j in {1..3}
+do 
+ echo"i=$i and j=$j";
+done
+done
+8888888888888888888888888888888888888
+#1/bin/bash
+for i in {1..5}
+do
+if[$i -eq 3]
+then 
+break
+888888888 not finished
+
+
+888888 sudo systemctl status crone.service
+8888888  cronetab -

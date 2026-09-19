@@ -1,0 +1,971 @@
+ 
+What is the purpose of the DISTINCT keyword in a SELECT statement?
+It sorts the result relation in ascending order of the selected attributes.
+It restricts the result to tuples that satisfy the WHERE predicate.
+It forces the elimination of duplicate tuples from the result relation.
+It guarantees that no NULL values appear in the result relation.
+2) 
+Which statement correctly characterises a correlated subquery?
+It is evaluated once, and the same result is reused for every tuple of the outer query.
+It references an attribute of the outer query and is therefore conceptually re-evaluated for each tuple of the outer query.
+It cannot be written inside an EXISTS predicate.
+It is guaranteed by the standard to execute faster than an equivalent join.
+3) 
+Q5. Which of the following SQL statements correctly retrieves employee names that start with the letter 'A' and belong to the ?Sales? department, sorted by name in ascending order?
+SELECT name FROM employees WHERE name LIKE 'A%' AND department = 'Sales' ORDER BY name ASC;
+SELECT DISTINCT name FROM employees HAVING name LIKE 'A%' AND department = 'Sales' GROUP BY name;
+SELECT name FROM employees GROUP BY name ASC WHERE name LIKE 'A%' AND department = 'Sales';
+SELECT name FROM employees WHERE department = 'Sales' AND name = 'A%' ORDER BY name;
+4) 
+Which of the following queries is rejected by standard SQL, given that Dept and Ename are attributes of the relation Employee?
+SELECT Dept, COUNT(*) FROM Employee GROUP BY Dept
+SELECT Dept, Ename, COUNT(*) FROM Employee GROUP BY Dept
+SELECT COUNT(*) FROM Employee
+SELECT Dept FROM Employee GROUP BY Dept HAVING COUNT(*) > 3
+5) 
+In PostgreSQL full text search, which expression correctly tests whether a document column matches a search term, and which index type is normally created to accelerate it?
+Doc LIKE '%term%', accelerated by a B-tree index.
+to_tsvector('english', Doc) @@ to_tsquery('english', 'term'), accelerated by a GIN index.
+MATCH(Doc) AGAINST('term'), accelerated by a hash index.
+CONTAINS(Doc, 'term'), accelerated by a bitmap index.
+6) 
+Which statement correctly distinguishes a user-defined function from a stored procedure in SQL?
+A function must return a value and may therefore be used within a SELECT list or WHERE clause, whereas a procedure need not return a value and is invoked as a statement.
+A procedure must return a value, whereas a function cannot return anything.
+Neither construct is permitted to accept input parameters.
+Both constructs can be invoked only from within the body of a trigger.
+7) 
+How does a trigger differ from a stored procedure with respect to invocation?
+A trigger is invoked automatically by a specified database event, whereas a procedure must be invoked explicitly.
+A trigger must be invoked explicitly using the CALL statement, whereas a procedure executes automatically.
+Both are invoked automatically whenever the database is opened.
+A trigger can be invoked only by the database administrator.
+8) 
+Why is a predicate such as Document LIKE '%database%' considered unsuitable for genuine full text search?
+Because LIKE cannot be used on character columns longer than 255 characters.
+Because LIKE performs plain substring matching with no stemming, stop-word removal or relevance ranking, and a leading wildcard prevents ordinary index usage.
+Because LIKE always returns UNKNOWN when the column contains multiple words.
+Because LIKE is permitted only inside a HAVING clause.
+9) 
+A partition contains the values 10, 20, 20 and 30, and the expression SUM(v) OVER (ORDER BY v) is evaluated. What cumulative value appears on both of the tuples holding the value 20, and why?
+30 on the first and 50 on the second, because each tuple is processed independently.
+50 on both, because the default frame is RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW and RANGE treats tied values as a single group of peers.
+20 on both, because the frame includes only the current tuple.
+80 on both, because ORDER BY inside OVER is ignored for aggregate window functions.
+10) 
+The predicate x > ALL (SELECT Salary FROM Employee) is logically equivalent to which of the following?
+x > MIN(Salary)
+x > AVG(Salary)
+x > MAX(Salary)
+x > COUNT(Salary)
+11) 
+The query SELECT Dept FROM Employee GROUP BY Dept HAVING AVG(Salary) = MAX(AVG(Salary)) is intended to return the department with the highest average salary, but it is rejected. Why?
+Because the HAVING clause is not permitted to contain aggregate functions.
+Because one aggregate function cannot be nested directly inside another within the same query block; the inner aggregate must be computed in a subquery or CTE.
+Because AVG cannot be applied to a numeric salary column.
+Because GROUP BY and HAVING cannot appear in the same query.
+12) 
+Q4. Consider the following query: SELECT department, COUNT(*) FROM employees WHERE salary > 50000 GROUP BY department HAVING COUNT(*) > 10 ORDER BY COUNT(*) DESC; Which of the following statements is true about this query?
+The WHERE clause filters groups after aggregation.
+The HAVING clause filters rows before grouping.
+The HAVING clause filters groups after aggregation.
+The ORDER BY clause must appear before GROUP BY.
+13) 
+Relation R has R.a = {1, 2, 3} and relation S has S.b = {2, NULL}. What is returned by SELECT * FROM R WHERE R.a NOT IN (SELECT b FROM S)?
+The tuples 1 and 3, since only the value 2 is excluded.
+The tuple 2 only.
+The empty relation, because the comparison against NULL makes the predicate UNKNOWN for every tuple.
+All three tuples, because NULL is ignored by the NOT IN operator.
+14) 
+Consider WITH RECURSIVE Reach(x) AS (base_query UNION ALL recursive_query) SELECT * FROM Reach. Which statement is TRUE?
+The base query may reference Reach, but the recursive query may not.
+The recursive query may reference Reach; the base query seeds the result, and the recursion must be monotonic so that it terminates at a fixed point.
+A recursive CTE is restricted by the standard to exactly two levels of recursion.
+The recursive query must contain a NOT EXISTS predicate in order to terminate.
+15) 
+Why must the predicate IS NULL be used instead of the predicate = NULL when testing for missing values?
+Because = NULL evaluates to UNKNOWN and therefore never qualifies a tuple in the WHERE clause.
+Because = NULL is valid only inside a HAVING clause.
+Because = NULL implicitly converts the column to a character data type.
+Because = NULL can only be applied to primary key columns.
+16) 
+The query SELECT d.Dname, COUNT(*) FROM Dept d LEFT OUTER JOIN Employee e ON d.Did = e.Did GROUP BY d.Dname is executed on a schema in which one department has no employees. What is reported for that department, and how should the query be corrected?
+It reports 0, and no correction is required.
+It reports 1, because COUNT(*) counts the NULL-padded tuple; the count must be written as COUNT(e.Eid).
+It reports NULL, and the count must be replaced by SUM(1).
+The department does not appear in the result at all, and a full outer join must be used instead.
+17) 
+A relation contains 5 tuples, of which 2 have a NULL value in column A. What do COUNT(*) and COUNT(A) return respectively?
+5 and 5
+5 and 3
+3 and 3
+5 and 0
+18) 
+Relations R and S each contain 100 tuples and share exactly one attribute, which is a non-key attribute in both relations. What are the minimum and maximum possible numbers of tuples in R NATURAL JOIN S?
+0 and 100
+100 and 10000
+0 and 10000
+1 and 200
+19) 
+In SQL, what is the truth value of a comparison predicate such as (Salary > NULL)?
+TRUE
+FALSE
+UNKNOWN
+The statement raises a runtime type error.
+20) 
+Given Student(sid), Course(cid) and Enroll(sid, cid), which formulation correctly retrieves the students who have enrolled in EVERY course?
+SELECT sid FROM Enroll GROUP BY sid HAVING COUNT(cid) > 1
+SELECT sid FROM Student S WHERE NOT EXISTS (SELECT cid FROM Course C WHERE NOT EXISTS (SELECT * FROM Enroll E WHERE E.sid = S.sid AND E.cid = C.cid))
+SELECT sid FROM Enroll WHERE cid IN (SELECT cid FROM Course)
+SELECT DISTINCT E.sid FROM Enroll E, Course C WHERE E.cid = C.cid
+21) 
+Relations R(A, B, C) and S(C, D, E) are combined using a natural join. What is the degree (number of attributes) of the resulting relation?
+6
+5
+4
+3
+22) 
+A trigger is declared as AFTER DELETE ... FOR EACH ROW. A single DELETE statement removes 7 tuples. How many times does the trigger body execute?
+Once, because a single statement was issued.
+Seven times, once for each affected tuple.
+Eight times, once per tuple plus one final statement-level activation.
+Zero times, because triggers activate only on INSERT operations.
+23) 
+The salaries within a partition are 10, 20, 20 and 30. What rank is assigned to the value 30 by RANK() and by DENSE_RANK() respectively?
+3 and 3
+4 and 3
+3 and 4
+4 and 4
+24) 
+What is the effect of executing DELETE FROM Employee; as compared to DROP TABLE Employee;?
+Both statements remove the tuples as well as the table definition from the schema.
+DELETE removes all tuples but retains the table definition, whereas DROP removes the tuples along with the table definition.
+DELETE removes the table definition, whereas DROP removes only the tuples.
+Both statements are synonyms and differ only in execution speed.
+25) 
+Q1. Which SQL clause is used to specify the columns to be retrieved from a table?
+WHERE
+FROM
+SELECT
+GROUP BY
+26) 
+Which of the following view definitions is generally NOT updatable through ordinary INSERT, UPDATE or DELETE statements?
+CREATE VIEW V AS SELECT Eid, Ename FROM Employee WHERE Dept = 'CSE'
+CREATE VIEW V AS SELECT * FROM Employee WHERE Salary > 50000
+CREATE VIEW V AS SELECT Dept, AVG(Salary) FROM Employee GROUP BY Dept
+CREATE VIEW V AS SELECT Eid, Salary FROM Employee
+27) 
+Q3. Which of the following SQL statements will return all unique department names from the employees table?
+SELECT department FROM employees;
+SELECT UNIQUE department FROM employees;
+SELECT DISTINCT department FROM employees;
+SELECT department, DISTINCT FROM employees;
+28) 
+Q2. Which SQL clause is used to filter records after they have been grouped?
+WHERE
+HAVING
+ORDER BY
+DISTINCT
+29) 
+Which keyword is used to define a Common Table Expression (CTE) in SQL?
+USING
+DECLARE
+TEMP
+WITH
+30) 
+Which clause is used to impose a condition on the groups formed by a GROUP BY clause?
+WHERE
+ORDER BY
+FILTER
+HAVING
+31) 
+Relations R and S contain the single-attribute tuples {1, 2, 2, 3} and {2, 2, 3, 4} respectively. What is returned by R INTERSECT S, and how would the result change with INTERSECT ALL?
+{2, 3}; INTERSECT ALL would return {2, 2, 3} because it retains the minimum multiplicity of each value.
+{2, 2, 3}; INTERSECT ALL would return {2, 3} because it eliminates duplicates.
+{2}; INTERSECT ALL would return the same result.
+{1, 2, 2, 3, 4}; INTERSECT ALL is not valid SQL.
+32) 
+The column Salary contains the values 100, 200, NULL and NULL. What value is returned by SELECT AVG(Salary)?
+75, since all four tuples participate in the computation.
+150, since NULL values are ignored by the aggregate function.
+NULL, since the presence of any NULL makes the aggregate undefined.
+0, since NULL values are treated as zero.
+33) 
+A view created using the CREATE VIEW statement is best described as:
+A physical copy of the base relation that is stored permanently on disk.
+An auxiliary access structure built over one or more attributes of a relation.
+A virtual relation whose contents are derived from a stored query over base relations.
+A temporary relation that is discarded at the end of every transaction.
+34) 
+Which set operation combines the results of two SELECT statements while retaining duplicate tuples?
+UNION
+UNION ALL
+INTERSECT
+EXCEPT
+35) 
+Relation R(A) contains the values {1, 2, 3, 4, 5} and relation S(A) contains {2, 3, 9}. How many tuples are produced by R LEFT OUTER JOIN S ON R.A = S.A?
+2
+3
+5
+6
+
+
+
+ 
+In SQL, which datatype would be most appropriate for storing email addresses?
+VARCHAR(255)
+TEXT
+CHAR(50)
+NVARCHAR(MAX)
+2) 
+What will happen if you try the following:INSERT INTO Employee(emp_id, emp_name) VALUES (101, 'Alice');Given the table has salary DECIMAL(10,2) NOT NULL column.
+Insert succeeds, salary is set to 0
+Insert succeeds, salary is NULL
+Insert fails due to NOT NULL constraint
+Insert succeeds, database assigns default value automatically
+3) 
+Which of the following relational algebra operations can reduce duplicates and schema size simultaneously?
+Projection (?)
+Selection (?)
+Intersection (?)
+Aggregation (?)
+4) 
+Which of the following is NOT a valid SQL numeric datatype?
+DECIMAL(10,2)
+NUMERIC(5)
+FLOAT(10)
+CHAR(10)
+5) 
+Consider the table:CREATE TABLE Orders ( order_id INT PRIMARY KEY, customer_id INT, CONSTRAINT fk_customer FOREIGN KEY (customer_id) REFERENCES Customers(customer_id) ON DELETE CASCADE);What happens if a customer is deleted from Customers?
+All orders for that customer are automatically deleted
+The deletion fails due to foreign key constraint
+customer_id in Orders is set to NULL
+Nothing happens to Orders
+6) 
+When mapping a binary 1:1 relationship type R between entity types S and T, if both S and T have partial participation in R, and the Foreign Key (2 relations) approach is chosen, which statement is most accurate regarding the placement of the foreign key?
+The foreign key must be placed in S, referencing T.
+The foreign key must be placed in T, referencing S.
+The foreign key can be placed in either S or T, referencing the other relation.
+A foreign key is not necessary in this scenario; a separate relationship table is always preferred for partial participation.
+7) 
+Which of the following scenarios best illustrates the concept of ?data? as distinct from ?information??
+A report showing student pass/fail percentages for each department.
+A list of student IDs, names, and phone numbers, stored without any sorting or grouping.
+A dashboard showing average student attendance by department and semester.
+A pie chart visualizing student enrollment trends over five years.
+8) 
+What is one major drawback of a file-processing system?
+Faster data access
+Data redundancy and inconsistency
+Centralized control of data
+Automatic enforcement of constraints
+In a database system, atomicity ensures that:
+Data is accessed by one user at a time
+9) 
+Which scenario illustrates a misuse of a derived attribute in an ER model?
+Storing age in the database while also storing date_of_birth
+Calculating age from date_of_birth during query execution
+Using current date to calculate years of service
+Creating a view that computes a value on the fly
+10) 
+Which of the following ALTER TABLE operations is NOT allowed if the table already contains data?
+Adding a new column with DEFAULT value
+Dropping a column that has dependent foreign keys
+Renaming a table
+Adding a CHECK constraint
+11) 
+If relation A has tuples {1, 2, 3, 4} and relation B has tuples {3, 4, 5, 6}, then A ? B gives:
+{1, 2}
+{3, 4}
+{5, 6}
+{1, 2, 5, 6}
+The Division ( Ã· ) operation is most useful when we want to:
+Find tuples related to all values in another relation
+12) 
+When mapping a weak entity set ?A? that depends on a strong entity set ?B?, how is the primary key of the resulting relation schema for ?A? formed?
+It consists solely of the discriminator of ?A?.
+It is derived from a hash function of all attributes of ?A?.
+It is the combination of the primary key of the identifying strong entity set ?B? and the discriminator of the weak entity set ?A?.
+It is the primary key of the strong entity set ?B? only.
+13) 
+Which of the following best represents a unique benefit of a DBMS over traditional file systems when handling a university?s student records?
+Storing plain text student names and marks
+Manual entry and tallying of records
+Supporting multiple concurrent users while maintaining consistency
+Restricting access to data completely
+14) 
+Which of these problems occurs when multiple users access and modify data simultaneously without proper control?
+Integrity problems
+Atomicity failure
+Concurrent access anomalies
+Data isolation
+A DBMS provides a central information store primarily to:
+Increase redundancy
+15) 
+Which scenario most justifies the adoption of a parallel database architecture over a distributed one?
+A news app that loads local headlines depending on a user?s GPS location
+A cloud-based game that stores player stats and friend lists
+A government meteorology center analyzing real-time satellite data for cyclone predictions
+A blogging platform used globally that stores content by region
+16) 
+Consider the table:Employee(emp_id INT, emp_name VARCHAR(50), salary DECIMAL(10,2));Which of the following statements will increase all salaries by 10% only for employees
+UPDATE Employee SET salary = salary*1.1;
+UPDATE Employee SET salary = salary*1.1 WHERE salary < 5000;
+UPDATE Employee WHERE salary < 5000 SET salary = salary*1.1;
+UPDATE Employee SET salary*1.1 WHERE salary < 5000;
+17) 
+Given relations Employee(EmpID, Name, DeptID, Salary) and Department(DeptID, DeptName), evaluate the expression:Temp ? ?Salary>60000(Employee)Result ? ?Name,DeptName(Temp ? Department)What does Result contain?
+Names of departments with average salary > 60000
+Names of employees earning > 60000
+Names of employees earning > 60000 and their department names
+All department names regardless of salary
+18) 
+What happens if a row violates a CHECK constraint during INSERT or UPDATE?
+The row is inserted/updated but flagged as invalid
+The row is automatically corrected to satisfy the constraint
+The operation fails and an error is thrown
+The database ignores the CHECK constraint
+19) 
+When would representing phone_number as a multivalued attribute using a double ellipse be most appropriate?
+When all instructors have exactly one phone number
+When the number of phone numbers per instructor varies
+When the number of phone numbers per instructor varies
+When phone numbers are same for all instructors in a department
+20) 
+Consider the table:CREATE TABLE Employee ( emp_id INT PRIMARY KEY, emp_name VARCHAR(50) NOT NULL, salary DECIMAL(10,2), join_date DATE DEFAULT CURRENT_DATE);Which of the following is TRUE?
+emp_name can store NULL values
+salary can store up to 10 digits, with 2 after the decimal
+join_date cannot have a default value
+emp_id can have duplicate values
+21) 
+An attribute PreviousDegrees stores multiple tuples of (College, Year, Degree, Field). Which classification best fits this attribute?
+Multivalued attribute
+Composite attribute
+Complex attribute
+Redundant attribute
+22) 
+Which of the following accurately matches the schema level with its description?
+Physical schema ? Describes virtual views for users
+Logical schema ? Describes file storage techniques and indexing
+View schema ? Defines access-controlled subsets of data for different users
+Subschema ? Refers to low-level device-specific storage
+23) 
+Which of the following indirectly helps reduce client-side computational burden in a two-tier architecture?
+Moving data to local JSON files
+Shifting SQL parsing to the server
+Compiling JDBC drivers into the client program
+Disabling ODBC query translation
+24) 
+What will happen if you try to insert a string value 'abc' into a column defined as INT?
+SQL automatically converts it to 0
+SQL throws a runtime error
+SQL stores 'abc' as NULL
+SQL truncates 'abc' to 'a'
+25) 
+Which of the following most accurately represents a relationship instance?
+The ?advisor? diamond in an ER diagram
+A row in a table that links one instructor to one student
+The set of all students in the ?Student? entity set
+An attribute in the ?Course? entity
+26) 
+A global supply chain is facing frequent delays due to poor visibility into inventory levels. Which database feature, when integrated properly, is most likely to resolve this issue?
+Triggering automatic email notifications
+Creating spreadsheet backups of inventory every week
+Real-time synchronization of supplier and inventory tables across branches
+Maintaining manual dispatch registers at warehouses
+27) 
+Which of the following most accurately reflects the definition of a database in the context of a university?
+A set of spreadsheets with course names typed manually by different departments.
+A shared folder with scanned student mark sheets.
+A structured collection of interrelated student and course records maintained on a centralized server.
+A pile of physical student registration forms stored in an office.
+28) 
+Which DDL command is used to change the datatype of a column in an existing table?
+ALTER TABLE ... MODIFY COLUMN ?
+UPDATE TABLE ... SET ?
+CHANGE TABLE ... COLUMN ?
+MODIFY TABLE ... COLUMN ...
+29) 
+Which of the following reflects an indirect responsibility of a DBA in maintaining system performance?
+Designing user interface forms
+Writing business logic in the application tier
+Tuning index structures and access methods
+Creating JavaScript front-end validators
+30) 
+Which min?max notations correctly represent this relationship?
+Owner (1, N), Property (1, 1)
+Owner (0, N), Property (1, 1)
+Owner (1, 1), Property (1, N)
+Owner (0, 1), Property (1, N)
+31) 
+What could be an indirect consequence if a DBA fails to periodically monitor disk space availability?
+Logical schema changes become necessary
+Query execution plans become invalid
+Sophisticated users lose their access rights
+Transaction logs may overflow, causing system crashes
+32) 
+Consider an Owner?Property relationship where:
+Each owner must own at least one property but can own many.
+Each property must be owned by exactly one owner.
+33) 
+If we execute:DELETE FROM Employee WHERE emp_id = 105;And Employee has a foreign key in Orders table with ON DELETE CASCADE, what happens?
+Only employee 105 is deleted
+Employee 105 and all related orders are deleted
+Deletion fails because of the foreign key
+Only orders are deleted, employee remains
+34) 
+Which constraint combination ensures a column value is unique but can also be NULL?
+PRIMARY KEY
+UNIQUE
+NOT NULL
+CHECK
+35) 
+Which of the following statements about Union ( ? ) and Difference ( ? ) is true?
+Both operations require identical attribute names and domains.
+Union allows different attribute domains, but Difference does not.
+Difference can be applied on relations with different schema.
+Union automatically removes duplicate tuples but Difference does not.
+36) 
+A ?Product? entity in an ER diagram has a primary key ?Product_ID? and a multivalued attribute ?Color?. When converting this to a relational schema, what is the most appropriate representation?
+Product (Product_ID, Color)
+Product (Product_ID) and Product_Color (Product_ID, Color) with Product_ID as a foreign key in Product_Color.
+Product (Product_ID, Color1, Color2, ...)
+Product (Product_ID) and Color (Color_ID, Product_ID)
+37) 
+A university wants to track which instructor supervises which student on which project. Why can?t this be modeled correctly using only binary relationships?
+It increases redundancy in course records
+A student can only have one instructor
+A binary relationship can?t express all three dependencies simultaneously
+The ER model doesn?t support multiple relationships
+38) 
+Consider the relational algebra expression:?E1(EmpID, EName, DNo) ? ?EmpID, Name, DeptID(Employee)What does this operation do?
+Selects employees with a specific DeptID
+Projects EmpID, Name, and DeptID, and renames them as EmpID, EName, DNo
+Joins Employee with Dept relation
+Deletes the attribute DeptID
+39) 
+A university maintains student and course data in a DBMS. If two instructors simultaneously update a student?s grade, the system ensures correctness using:
+Integrity constraints
+View definition
+Concurrency control and locking
+Redundant backups
+40) 
+For an N-ary relationship type (where N > 2), when creating a new relationship schema ?S? which of the following is not a direct component of S but is crucial for its integrity?
+The simple attributes of the N-ary relationship type.
+The simple components of composite attributes of the N-ary relationship type.
+The foreign key attributes which are primary keys of the participating entity types.
+The derived attributes of any of the participating entity types.
+41) 
+Which statement about DELETE is TRUE?
+DELETE FROM Employee; removes the table itself
+DELETE FROM Employee; removes all rows but keeps the table
+DELETE cannot have a WHERE clause
+DELETE automatically resets identity columns
+42) 
+Why might a company like Netflix rely on distributed databases rather than a centralized one?
+To simplify billing operations across countries
+To stream videos from a local device instead of the cloud
+To reduce the need for user authentication
+To ensure low-latency access and personalized recommendations across global regions
+43) 
+Which SELECT query will return only distinct combinations of emp_name and salary?
+SELECT emp_name, salary FROM Employee;
+SELECT DISTINCT emp_name, salary FROM Employee;
+SELECT DISTINCT emp_name FROM Employee;
+SELECT emp_name, DISTINCT salary FROM Employee;
+44) 
+What is the main difference between ON DELETE CASCADE and ON DELETE SET NULL in a foreign key?
+CASCADE deletes parent rows, SET NULL deletes child rows
+CASCADE deletes child rows, SET NULL sets child column to NULL
+Both delete child rows
+Both set child column to NULL
+45) 
+In min?max notation (1, N) for a relationship, what does the number 1 represent?
+Maximum participation
+Minimum participation
+Relationship type
+Key attribute
+In an ER model, a weak entity must always have:
+A multivalued attribute
+46) 
+A foreign-key constraint is added to the relational schema of a weak entity set. What is the primary purpose of this constraint?
+To define the primary key of the weak entity.
+To ensure that for each tuple representing a weak entity, there is a corresponding tuple representing the corresponding strong entity.
+To enforce uniqueness across all attributes in the weak entity?s schema.
+To establish a many-to-many relationship between the weak entity and the strong entity.
+
+
+1) 
+Relation R(A, B) has 6 tuples and S(B, C) has 4 tuples. What is the maximum possible number of tuples in R natural-join S?
+4
+6
+10
+24
+2) 
+Which relational algebra operator acts as a horizontal filter by selecting tuples that satisfy a given predicate?
+Projection (Π)
+Selection (σ)
+Cartesian Product (×)
+Division (÷)
+3) 
+A NULL value for the attribute Apartment_number of an instructor's address may mean any of the following EXCEPT
+the address genuinely has no apartment number
+an apartment number exists but is not recorded
+it is unknown whether an apartment number applies at all
+the apartment number is zero
+4) 
+When mapping a binary 1:N relationship set to relational tables, where should the primary key of the 1-side entity be placed as a foreign key?
+On the 1-side entity table
+On the N-side entity table
+In a newly created relationship table regardless of constraints
+In both entity tables simultaneously
+5) 
+A foreign key value in the referencing relation may be
+only an existing primary-key value of the referenced relation
+an existing primary-key value of the referenced relation, or NULL if permitted
+any value from the same domain
+NULL only when the referenced relation is empty
+6) 
+In an ER diagram, how is a multivalued attribute visually represented?
+Dashed oval
+Double oval
+Underlined rectangle
+Double rectangle
+7) 
+ORDER(OrderID, CustID, Amount) has 40 tuples with 12 distinct CustID values, and CUSTOMER(CustID, Name) has 12 tuples. Every CustID in ORDER exists in CUSTOMER. The number of tuples in ORDER natural-join CUSTOMER is
+12
+40
+52
+480
+8) 
+Which SQL statement copies data directly from a query result into an existing table in a single atomic set operations pass?
+INSERT ... SELECT
+UPDATE ... LIKE
+ALTER TABLE ... ADD SELECT
+MERGE ... TRUNCATE
+9) 
+Which classification of SQL statements is correct?
+TRUNCATE is DML; DELETE is DDL
+TRUNCATE is DDL; DELETE is DML
+Both TRUNCATE and DELETE are DDL
+Both TRUNCATE and DELETE are DCL
+10) 
+Student.Dept_id is a foreign key referencing Department.Dept_id, which is the primary key of Department. Consider (i) UPDATE Student SET Dept_id = NULL WHERE Roll_no = 1 and (ii) UPDATE Department SET Dept_id = NULL WHERE Dept_id = 1. Then
+both fail
+(i) fails, (ii) succeeds
+(i) succeeds, (ii) fails
+both succeed
+11) 
+A surrogate key is best described as
+a foreign key that is also a primary key
+a system-generated identifier with no real-world meaning, used as primary key
+a candidate key that was not chosen as primary key
+a composite key formed from all attributes of the relation
+12) 
+Which SQL integrity constraint automatically enforces non-null values for every declared column?
+UNIQUE
+CHECK
+PRIMARY KEY
+DEFAULT
+13) 
+Which class of database users interacts with the system exclusively through pre-built, predefined application interfaces (e.g., automated bank tellers)?
+Sophisticated Users
+Database Administrators
+Naive Users
+Application Programmers
+14) 
+The CAR entity type has both VehicleIdentificationNumber and VehicleTagNumber(Number, State) as keys. Which statement is correct?
+An entity type may have at most one key attribute
+A key attribute cannot be composite
+An entity type may have several keys, and each is underlined in the ER diagram
+Only the shorter key may be underlined
+15) 
+A university replaces a set of application-owned flat files with a DBMS. Immediately after the migration, two application teams stop being able to store the same student's address in two different forms. Which specific file-processing drawback has been eliminated?
+Difficulty in accessing data
+Data redundancy and inconsistency
+Atomicity of updates
+Concurrent-access anomalies
+16) 
+Which combination of ER notation correctly describes a weak entity set and its identifying relationship?
+Double rectangle, double diamond, discriminator underlined with a dashed line
+Dashed rectangle, dashed diamond, discriminator underlined solid
+Double rectangle, single diamond, discriminator not underlined
+Single rectangle, double diamond, discriminator double-underlined
+17) 
+The Projection (Π) operator in relational algebra operates by:
+Filtering rows based on logical conditions
+Selecting specified columns and eliminating duplicate tuples from the result set
+Joining two relations based on matching primary-foreign key pairs
+Grouping tuples to compute summary metrics
+18) 
+An ER schema has three strong entity types, one binary M:N relationship, one binary 1:N relationship and one multivalued attribute on a strong entity. Using the standard mapping algorithm, the minimum number of relations produced is
+4
+5
+6
+7
+19) 
+What is the schema degree (number of columns) resulting from a Cartesian Product (R × S) of relation R (arity 4) and relation S (arity 3)?
+7
+12
+4
+3
+20) 
+When mapping a multivalued attribute of an entity into a relational schema, the resulting relation contains:
+Only the multivalued attribute values
+The entity's primary key as a foreign key plus the multivalued attribute
+A single row per entity with comma-separated values
+A primary key copied from an owner weak entity
+21) 
+A weak entity set W is identified by two owner entity sets E1 and E2 and has discriminator d. The key of W is
+d alone
+PK(E1) union d
+PK(E1) union PK(E2) union d
+PK(E1) union PK(E2) only
+22) 
+Which of the following describes a database schema?
+The actual content stored in the database at a specific point in time.
+The overall logical structure or blueprint of the database that changes infrequently.
+The collection of temporary application variables.
+The physical hardware configuration of the database server.
+23) 
+Which statement about superkeys and keys is correct?
+Every superkey is a key
+Every key is a superkey
+A relation has exactly one superkey
+Removing an attribute from a superkey always yields a key
+24) 
+An entity set COURSE participates twice in a relationship set PREREQ. Which statement is true?
+The degree of PREREQ is 4
+Role names are required on the lines joining COURSE to PREREQ
+PREREQ must be a ternary relationship
+COURSE must be a weak entity
+25) 
+Relations P and Q share no attribute name. The natural join P JOIN Q then behaves as
+an empty relation
+the Cartesian product P CROSS Q
+P alone
+an error, since natural join requires common attributes
+26) 
+In an ER diagram, a double line drawn between an entity set and a relationship set indicates
+the relationship is one-to-one
+the entity set participates totally in the relationship
+the entity set is weak
+the relationship is recursive
+27) 
+If a table has foreign keys defined with both ON DELETE CASCADE and ON DELETE RESTRICT, what is the outcome of attempting to delete a parent row referenced by both?
+The cascading rows are deleted first, then the operation stops.
+The single RESTRICT action vetoes the entire statement, causing zero rows to be changed anywhere.
+The operation succeeds partially based on execution order.
+The parent row is deleted and the restrict constraint is ignored.
+28) 
+Which statement about logical data independence is correct?
+It is generally easier to achieve than physical data independence
+It concerns changing the physical level without disturbing the logical level
+It concerns changing the logical level without disturbing the external (view) level
+It requires the database to have exactly one external schema
+29) 
+Which relational algebra expression returns the names of employees who have no dependents, given EMPLOYEE(Ssn, Lname, ...) and DEPENDENT(Essn, ...)?
+pi_Lname(EMPLOYEE) - pi_Lname(DEPENDENT)
+pi_Lname((pi_Ssn(EMPLOYEE) - rho_Ssn(pi_Essn(DEPENDENT))) JOIN EMPLOYEE)
+pi_Lname(EMPLOYEE JOIN DEPENDENT)
+pi_Lname(sigma_(Ssn != Essn)(EMPLOYEE CROSS DEPENDENT))
+30) 
+r has n tuples. Which statement about |pi_L(r)| is always true?
+|pi_L(r)| = n in every case
+|pi_L(r)| <= n, with equality guaranteed when L contains a key of r
+|pi_L(r)| >= n
+|pi_L(r)| = n only when L is a single attribute
+31) 
+Form 2 of INSERT names the attributes explicitly, as in INSERT INTO EMPLOYEE (Fname, Lname, Dno, Ssn) VALUES (...). Attributes may be omitted from such a list only when they
+are of character type
+permit NULL or carry a DEFAULT value
+are not part of any index
+appear last in the CREATE TABLE statement
+32) 
+Which file system drawback occurs when redundant data is updated in one location but not another, leading to conflicting records?
+Data Redundancy
+Data Inconsistency
+Data Isolation
+Atomicity Failure
+33) 
+What is the fundamental operational difference between DELETE and TRUNCATE?
+DELETE removes the table structure; TRUNCATE keeps it.
+DELETE removes chosen rows conditionally via WHERE; TRUNCATE removes all rows rapidly without row-by-row log evaluation.
+TRUNCATE obeys foreign key cascade actions; DELETE does not.
+DELETE resets primary key auto-increments; TRUNCATE preserves them.
+34) 
+R is a many-to-one relationship from entity set E1 to entity set E2, and both participate totally in R. Which of the following must be true?
+Every entity of E1 is associated with exactly one entity of E2
+Every entity of E2 is associated with exactly one entity of E1
+Some entity of E1 is associated with two or more entities of E2
+Some entity of E2 participates in no relationship instance
+35) 
+Which equivalence always holds for a relation r?
+sigma_p(sigma_q(r)) = sigma_q(sigma_p(r))
+pi_A(sigma_p(r)) = sigma_p(pi_A(r)) for every predicate p
+pi_A(pi_B(r)) = pi_B(pi_A(r)) for arbitrary attribute sets A and B
+sigma_p(r) always has the same number of tuples as r
+36) 
+Relation ENROL(SID, CID, Grade) has SID referencing STUDENT(SID) and CID referencing COURSE(CID), with {SID, CID} as primary key. Which insertion is rejected by entity integrity rather than referential integrity?
+(S1, NULL, 'A') where S1 exists in STUDENT
+(S9, C1, 'A') where S9 is absent from STUDENT
+(S1, C9, 'A') where C9 is absent from COURSE
+(S1, C1, NULL) with S1 and C1 both present
+37) 
+A table is created with Price DECIMAL(10,2), Discount DECIMAL(10,2) and CHECK (Discount <= Price). Which statement executes successfully?
+INSERT INTO T VALUES (1, 50.00, 80.00)
+INSERT INTO T VALUES (2, 50.00, NULL)
+UPDATE T SET Discount = 120.00 WHERE Price = 100.00
+None of these
+38) 
+A relation schema stores DateOfJoining and also YearsOfService. In ER terms YearsOfService should be modelled as
+a stored attribute, drawn as a plain ellipse
+a derived attribute, drawn as a dashed ellipse
+a multivalued attribute, drawn as a double ellipse
+a key attribute, drawn underlined
+39) 
+Each project is worked on by students, each student is guided by an instructor, and the guiding instructor may differ from project to project for the same student. The minimum modelling construct that captures this without loss of information is
+two binary relationships, STUDENT-INSTRUCTOR and STUDENT-PROJECT
+a ternary relationship over INSTRUCTOR, STUDENT and PROJECT
+a recursive relationship on STUDENT
+a weak entity STUDENT owned by PROJECT
+40) 
+A column is declared NUMERIC(3, 1). Which value can be stored exactly?
+444.5
+44.5
+0.32
+4445.0
+41) 
+Every student who enrols in a course receives a grade for that enrolment. Where does Grade belong in the ER diagram?
+An attribute of STUDENT
+An attribute of COURSE
+A descriptive attribute of the ENROLS relationship set
+A separate entity set related to both
+42) 
+Relation R(A, B, C, D, E) has exactly two candidate keys, {A, B} and {C, D}. The number of superkeys of R is
+12
+14
+16
+24
+43) 
+How is a binary M:N relationship set mapped into a relational schema?
+By adding a foreign key to one of the existing entity tables
+By creating a separate relationship table containing foreign keys referencing both entity primary keys
+By merging both entity sets into a single flat table
+By creating multivalued attributes in both entity tables
+44) 
+Atomicity in a DBMS guarantees that:
+Concurrent access leads to consistent read operations.
+Operations execute on an all-or-nothing basis during failures.
+Data is isolated from external view definitions.
+Queries execute without requiring pre-compiled plans.
+45) 
+Which statement correctly contrasts positional INSERT with named-column INSERT?
+Positional inserts are resilient to schema column additions.
+Named-column inserts break when column defaults are added.
+Named-column inserts are resilient to schema reordering, while positional inserts rely strictly on declared table column order.
+Positional inserts accept multiple rows while named-column inserts accept only one row.
+46) 
+Which pair of expressions is equivalent for the INSTRUCTOR relation? E1 = sigma_(dept='Physics' AND salary > 90000)(INSTRUCTOR) E2 = sigma_(dept='Physics')(sigma_(salary > 90000)(INSTRUCTOR))
+Equivalent, and identical as expressions
+Equivalent but not identical expressions
+Not equivalent, because AND is not commutative
+Not equivalent, because E2 discards attributes
+47) 
+An attribute that can be calculated from another stored attribute (such as calculating Age from DateOfBirth) is depicted using a:
+Double oval
+Solid oval
+Dashed oval
+Dashed rectangle
+48) 
+If a parent row is deleted and its referencing child key is defined with ON DELETE SET NULL, what happens to the child rows?
+Child rows are deleted alongside the parent row.
+Child rows survive, but their foreign key column values are updated to NULL.
+The deletion operation on the parent row is blocked completely.
+Child rows are copied into an archive table automatically.
+49) 
+A three-tier application architecture is preferred over a two-tier architecture in a public-facing web application mainly because
+it reduces the number of relations required in the schema
+the client never holds database credentials or issues SQL directly
+it removes the need for referential-integrity constraints
+it guarantees physical data independence
+50) 
+The line joining EMPLOYEE to the relationship ASSIGNED_TO carries the min-max label (0, 3). This means
+EMPLOYEE participates totally, with at most three assignments
+EMPLOYEE participates partially, with at most three assignments
+Every employee has at least three assignments
+The relationship is many-to-many with no upper bound
+51) 
+Relations r(A, B) and s(C, D, E) are given. Which operation is well defined?
+r UNION s
+r INTERSECT s
+r MINUS s
+r CROSS s
+52) 
+An n-ary relationship type with n = 3, over entity types with primary keys K1, K2 and K3, is mapped to a relation S. The default primary key of S is
+K1 only
+any two of K1, K2, K3
+the combination of K1, K2 and K3
+a descriptive attribute of the relationship
+53) 
+How does a DBMS resolve the integrity problems inherent in traditional file-processing systems?
+By duplicating constraint logic across all application programs.
+By enforcing constraints centrally within the database schema itself.
+By converting file formats into flat unstructured text.
+By restricting multi-user access entirely.
+54) 
+Modifying the internal storage structures or indexes without changing the logical schema is an example of:
+Logical Data Independence
+Physical Data Independence
+Dynamic Schema Evolution
+Program-Structure Coupling
+55) 
+In ER diagrams, total participation of an entity set in a relationship set is represented by a:
+Dashed line
+Double line
+Arrowhead
+Bold diamond
+56) 
+The optimised form of pi_A1(pi_A2(sigma_F1(sigma_F2(r)))), where A1 is a subset of A2, is
+pi_A2(sigma_(F1 AND F2)(r))
+pi_A1(sigma_(F1 AND F2)(r))
+pi_A1(sigma_(F1 OR F2)(r))
+pi_A2(sigma_F1(r))
+57) 
+R(Z) DIVIDE S(X) is defined for X a subset of Z, giving T(Y). Then Y equals
+Z UNION X
+Z INTERSECT X
+Z - X
+X - Z
+58) 
+Column Bonus of relation EMP contains the values 400, NULL, 600, NULL, 800. The results of COUNT(*) and AVG(Bonus) on EMP are
+5 and 360
+5 and 600
+3 and 360
+3 and 600
+59) 
+Which expression computes r INTERSECT s using only difference?
+r - (r - s)
+(r - s) - r
+r - (s - r)
+(r - s) UNION (s - r)
+60) 
+In (min,max) structural constraint notation, setting min = 0 indicates:
+Total participation
+Partial participation
+Mandatory participation
+Disjoint mapping
+61) 
+Which statement about DROP SCHEMA is correct?
+CASCADE removes the schema only if it is already empty
+RESTRICT removes the schema together with all its tables and constraints
+CASCADE removes the schema together with all its elements; RESTRICT applies only if it is empty
+Neither option exists in SQL
+62) 
+A weak entity set is identified by combining its discriminator (partial key) with the primary key of its:
+Recursive relationship
+Identifying (owner) entity set
+Multivalued attribute set
+Ternary relationship
+63) 
+Which level of database abstraction describeswhatdata is stored and what relationships exist among that data?
+Physical Level
+View Level
+Logical Level
+Hardware Level
+64) 
+What occurs if you attempt to add a CHECK (Age >= 18) constraint to an existing table that contains rows where Age = 16?
+The non-compliant rows are deleted automatically.
+The command fails and rejects the constraint until existing data is cleaned.
+The non-compliant rows have their Age updated to NULL.
+The check constraint is added but only enforced on new inserts.
+65) 
+Which sequence of relational algebra operations correctly finds the SIDs of students not enrolled in any course, given STUDENT(SID, ...) and ENROLLED(SID, CID)?
+pi_SID(ENROLLED) - pi_SID(STUDENT)
+pi_SID(STUDENT) - pi_SID(ENROLLED)
+pi_SID(STUDENT JOIN ENROLLED)
+pi_SID(STUDENT) INTERSECT pi_SID(ENROLLED)
+66) 
+Which of the following properties is FALSE?
+r UNION s = s UNION r
+r INTERSECT (s INTERSECT t) = (r INTERSECT s) INTERSECT t
+r - s = s - r
+r UNION (s UNION t) = (r UNION s) UNION t
+67) 
+An entity type STUDENT has an attribute PreviousDegrees recorded as {PreviousDegrees(College, Year, Degree, Field)}. This attribute is
+simple and single-valued
+composite but single-valued
+multivalued but simple
+complex, i.e. composite and multivalued
+68) 
+Consider the pair (intension, extension) as used for relations. Which pairing is correct?
+intension = current set of tuples; extension = relation schema
+intension = relation schema; extension = current set of tuples
+both denote the relation schema at different times
+both denote the current set of tuples at different times
+69) 
+Which statement about DELETE FROM EMPLOYEE; (no WHERE clause) is correct?
+It removes all rows and also the table definition
+It removes all rows but the table remains as an empty table
+It is rejected because DELETE requires a WHERE clause
+It removes only the first row
+70) 
+Table T(A PRIMARY KEY, C REFERENCES T(A) ON DELETE CASCADE) holds {(2,4), (3,4), (4,3), (5,2), (7,2), (9,5), (6,4)}. Deleting the tuple (2, 4) additionally removes
+(3,4) and (6,4) only
+(5,2) and (7,2) only
+(5,2), (7,2) and (9,5)
+nothing further
+71) 
+Why is naming constraints explicitly (CONSTRAINT constraint_name ...) recommended when creating tables?
+Unnamed constraints are not enforced by the DBMS engine.
+Explicitly named constraints can be dropped or modified individually in the future without rebuilding the schema.
+Named constraints automatically optimize query execution speeds.
+Naming constraints allows them to accept null values.
+72) 
+Attribute A is CHAR(10) and attribute B is VARCHAR(10). The string 'Avi' is stored in each. Which statement is correct?
+Both consume storage for exactly three characters
+A is padded to ten characters; B stores only three
+B is padded to ten characters; A stores only three
+Neither can store a three-character string
+73) 
+In a multi-row INSERT statement containing three rows in a single SQL command, what happens if the second row violates a unique key constraint?
+Row 1 lands in the table, Row 2 fails, and Row 3 lands in the table.
+The entire single statement fails atomically, leaving zero rows inserted.
+Rows 1 and 3 fail, but Row 2 is logged into an error table.
+The operation prompts for manual data correction mid-execution.
+74) 
+An enterprise migrates the EMPLOYEE relation from a heap file to a hash-organised file. No application program is recompiled and no query is rewritten. The property demonstrated is
+Logical data independence
+Physical data independence
+View independence
+Schema evolution
+75) 
+When a binary 1:1 relationship between S and T is mapped using the foreign-key approach, the foreign key should preferably be placed in
+whichever relation has fewer tuples
+the relation whose entity type has total participation in the relationship
+the relation whose entity type has partial participation
+a new third relation, always
+76) 
+In the aggregate expression Dno F COUNT Ssn, AVERAGE Salary (EMPLOYEE), the symbol Dno on the left of F denotes
+an attribute to be renamed
+the grouping attribute
+an additional aggregate function
+a selection predicate
+77) 
+In an UPDATE statement containing a subquery in its WHERE predicate (e.g., modifying rows based on an aggregate average), when is the subquery evaluated?
+Continuously after every single row update.
+Once, using the database state as it existed prior to starting the update operation.
+After the entire update completes to validate thresholds.
+Only when explicit locks are acquired on all target rows.
+78) 
+Which of these is an inherent (implicit) constraint of the relational model rather than a schema-based one?
+Dnumber must lie between 1 and 20
+An attribute value cannot itself be a list of values
+Ssn is the primary key of EMPLOYEE
+Dno in EMPLOYEE references DEPARTMENT
+79) 
+Which operation alters a live table's column order or data type without destroying existing table contents?
+TRUNCATE TABLE
+ALTER TABLE ... MODIFY COLUMN
+DROP TABLE
+UPDATE TABLE ... SET
