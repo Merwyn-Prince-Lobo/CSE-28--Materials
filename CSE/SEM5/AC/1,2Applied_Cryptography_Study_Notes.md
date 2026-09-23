@@ -451,10 +451,5 @@ Answer: **L0 ⊕ F(R0, K1)** ✓
 - φ(p) = p−1 for prime p; Euler's theorem: a^φ(n) ≡ 1 mod n if gcd(a,n)=1
 
 ---
-
-# 1-HOUR MOCK TEST PLAN
-1. Cover this sheet once (20 min skim)
-2. Do all MCQs in `unit1and_unit2_mcq.txt` closed-book (20 min)
-3. Check answers against this sheet, redo missed topics (20 min)
-
+-------------------------------------------------unit1 and unit2 end------------------------------------------------------------------
 Good luck! 🎯
